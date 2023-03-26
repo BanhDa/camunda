@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0">
+  <bpmn:process id="camunda-server-process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_13iqhne</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="say-hello" name="Say hello to&#10;demo">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://localhost:8081/hello-world</camunda:inputParameter>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:outputParameter name="Output_15ubhim" />
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rbgdwb</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rpnbcj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0rpnbcj" sourceRef="say-hello" targetRef="Activity_1y1tk5h" />
+    <bpmn:endEvent id="Event_16imcvp">
+      <bpmn:incoming>Flow_1gkp5y8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1gkp5y8" sourceRef="Activity_1y1tk5h" targetRef="Event_16imcvp" />
+    <bpmn:serviceTask id="Activity_1y1tk5h" name="Check response" camunda:type="external" camunda:topic="templateHandler">
+      <bpmn:incoming>Flow_0rpnbcj</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gkp5y8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_13iqhne" sourceRef="StartEvent_1" targetRef="Activity_0j2q774" />
+    <bpmn:sequenceFlow id="Flow_0rbgdwb" sourceRef="Activity_0j2q774" targetRef="say-hello" />
+    <bpmn:serviceTask id="Activity_0j2q774" camunda:type="external" camunda:topic="templateHandler">
+      <bpmn:incoming>Flow_13iqhne</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rbgdwb</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="camunda-server-process">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07rqhpq_di" bpmnElement="say-hello">
+        <dc:Bounds x="490" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0a9t7fm_di" bpmnElement="Activity_1y1tk5h">
+        <dc:Bounds x="740" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16imcvp_di" bpmnElement="Event_16imcvp">
+        <dc:Bounds x="992" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xudhnm_di" bpmnElement="Activity_0j2q774">
+        <dc:Bounds x="270" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0rpnbcj_di" bpmnElement="Flow_0rpnbcj">
+        <di:waypoint x="540" y="150" />
+        <di:waypoint x="540" y="57" />
+        <di:waypoint x="790" y="57" />
+        <di:waypoint x="790" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gkp5y8_di" bpmnElement="Flow_1gkp5y8">
+        <di:waypoint x="840" y="180" />
+        <di:waypoint x="992" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13iqhne_di" bpmnElement="Flow_13iqhne">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="240" y="117" />
+        <di:waypoint x="240" y="150" />
+        <di:waypoint x="270" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rbgdwb_di" bpmnElement="Flow_0rbgdwb">
+        <di:waypoint x="370" y="150" />
+        <di:waypoint x="430" y="150" />
+        <di:waypoint x="430" y="190" />
+        <di:waypoint x="490" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

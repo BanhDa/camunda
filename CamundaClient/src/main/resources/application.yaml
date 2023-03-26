@@ -1,0 +1,17 @@
+camunda.bpm.client:
+  base-url: http://localhost:8080/engine-rest #URL of Process Engine
+  lock-duration: 100 # time in ms & external task will be locked
+  basic-auth:
+    username: demo
+    password: demo
+
+  subscriptions:
+    templateHandler:
+      process-definition-key: externalTaskClientProcess
+
+logging:
+  level:
+    org.camunda.bpm.client: DEBUG
+
+server:
+  port: 8081
